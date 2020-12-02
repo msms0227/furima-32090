@@ -4,7 +4,6 @@
 |-------------------|--------|-------------|
 | nickname          | string | null: false |
 | email             | string | null: false |
-| password          | string | null: false |
 | encrypted_password| string | null: false |
 | last_name         | string | null: false |
 | first_name        | string | null: false |
@@ -24,7 +23,7 @@
 | data              | text      | null: false        |
 | category_id       | integer   | null: false        |
 | status_id         | integer   | null: false        |
-| delivery_fee      | integer   | null: false        |
+| delivery_fee_id   | integer   | null: false        |
 | area_id           | integer   | null: false        |
 | days_id           | integer   | null: false        |
 | price             | integer   | null: false        |
@@ -38,9 +37,8 @@
 
 |Column             |Type       |Options             |
 |-------------------|-----------|--------------------|
-| user              | references|                    |    
-| item              | references|                    |
-| place             | references|                    |
+| user              | references| null: false        |    
+| item              | references| null: false        |
 
 ### Association
 - belongs_to :user
@@ -55,9 +53,9 @@
 | prefectures_id    | integer   | null: false        |
 | city              | string    | null: false        |
 | address           | string    | null: false        |
-| building_name     | text      |                    |
+| building_name     | string    | null: false        |
 | phone_number      | string    | null: false        |
-| buy_record        | references|                    |
+| buy_record        | references| null: false        |
 
 
 ### Association
