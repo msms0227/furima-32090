@@ -1,24 +1,61 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column             |Type    |Options      |
+|-------------------|--------|-------------|
+| nickname          | string | null: false |
+| email             | string | null: false |
+| encrypted_password| string | null: false |
+| last_name         | string | null: false |
+| first_name        | string | null: false |
+| last_name_kana    | string | null: false |
+| first_name_kana   | string | null: false |
+| birthday          | date   | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :buy_records
 
-* Ruby version
+## items テーブル
 
-* System dependencies
+|Column             |Type       |Options             |
+|-------------------|-----------|--------------------|
+| name              | string    | null: false        |
+| data              | text      | null: false        |
+| category_id       | integer   | null: false        |
+| status_id         | integer   | null: false        |
+| delivery_fee_id   | integer   | null: false        |
+| area_id           | integer   | null: false        |
+| days_id           | integer   | null: false        |
+| user              | references| foreign_key: true: |
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one    :buy_record
 
-* Database creation
+## buy_records テーブル
 
-* Database initialization
+|Column             |Type       |Options             |
+|-------------------|-----------|--------------------|
+| user              | references| null: false        |    
+| item              | references| null: false        |
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one    :place
 
-* Services (job queues, cache servers, search engines, etc.)
+## places テーブル
 
-* Deployment instructions
+|Column             |Type       |Options             |
+|-------------------|-----------|--------------------|
+| postal_code       | string    | null: false        |
+| prefectures_id    | integer   | null: false        |
+| city              | string    | null: false        |
+| address           | string    | null: false        |
+| building_name     | string    | null: false        |
+| phone_number      | string    | null: false        |
+| buy_record        | references| null: false        |
 
-* ...
+
+### Association
+- belongs_to :buy_record
