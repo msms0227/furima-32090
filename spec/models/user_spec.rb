@@ -27,15 +27,13 @@ RSpec.describe User, type: :model do
         @user.password = '11'
         @user.password_confirmation = '11'
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
-      it 'passwordは半角英数字混合だと登録できない' do
+      it 'passwordは半角英数字混合でないと登録できない' do
         @user.password = 'あいうえおかき'
         @user.password_confirmation = 'あいうえおかき'
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include('Password 半角英数字混合で入力してください')
       end
 
@@ -43,7 +41,6 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
-        # binding.pry
       end
 
       it 'emailが空ではいけない' do
@@ -69,14 +66,12 @@ RSpec.describe User, type: :model do
       it 'last_nameが空ではいけない' do
         @user.last_name = ''
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
 
       it 'last_nameは全角（漢字・ひらがな・カタカナ）でなければならない' do
         @user.last_name = 'abc'
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include('Last name 全角文字を使用してください')
       end
 
@@ -89,7 +84,6 @@ RSpec.describe User, type: :model do
       it 'first_nameは全角（漢字・ひらがな・カタカナ）でなければならない' do
         @user.first_name = 'abc'
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
       end
 
@@ -102,7 +96,6 @@ RSpec.describe User, type: :model do
       it 'last_name_kanaカタカナでないといけない' do
         @user.last_name_kana = '山田'
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include('Last name kana 全角カタカナのみで入力して下さい')
       end
 
