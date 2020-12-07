@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_084513) do
     t.integer "delivery_fee_id", null: false
     t.integer "area_id", null: false
     t.integer "days_id", null: false
+    t.integer "price", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end

@@ -24,13 +24,17 @@ class Item < ApplicationRecord
 
   validates :image,presence: true
 
+  validates :price,presence: true, format: { with: /\A[0-9]+\z/, message: '半角数字で入力して下さい' }
+
+  
+
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :category
   belongs_to :status
-  belongs_to :delivery
+  belongs_to :delivery_fee
   belongs_to :area
-  belongs_to :days
+  belongs_to :day
 
 
 end
