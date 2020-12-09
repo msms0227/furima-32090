@@ -59,6 +59,13 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
 
+      it 'delivery_fee_idが1ではいけない' do
+        @item.delivery_fee_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+      end
+
+
       it 'area_idが空ではいけない' do
         @item.area_id = ''
         @item.valid?
@@ -99,6 +106,23 @@ RSpec.describe Item, type: :model do
         @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price 9999999以下で入力して下さい")
+      end
+      it 'priceが全角ではいけない' do
+        @item.price = 'ああ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 300円以上で入力して下さい", "Price 9999999以下で入力して下さい")
+      end
+
+      it 'priceが英数混合ではいけない' do
+        @item.price = 'abc123'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 300円以上で入力して下さい", "Price 9999999以下で入力して下さい")
+      end
+
+      it 'priceが半角英数ではいけない' do
+        @item.price = 'aaaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 300円以上で入力して下さい", "Price 9999999以下で入力して下さい")
       end
     end
   end
