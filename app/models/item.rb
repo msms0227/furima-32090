@@ -22,8 +22,6 @@ class Item < ApplicationRecord
     validates :days_id
   end
 
-
-
   validates :price, format: { with: /\A[0-9]+\z/, message: '半角数字で入力して下さい' }
   validates :price, numericality: { greater_than: 299, message: '300円以上で入力して下さい' }
   validates :price, numericality: { less_than: 10_000_000, message: '9999999以下で入力して下さい' }

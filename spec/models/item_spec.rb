@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'imageが空ではいけない' do
-        @item.image =nil
+        @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
@@ -38,7 +38,7 @@ RSpec.describe Item, type: :model do
       it 'category_idが1ではいけない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
       it 'status_idが空ではいけない' do
@@ -50,7 +50,7 @@ RSpec.describe Item, type: :model do
       it 'status_idが1ではいけない' do
         @item.status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
 
       it 'delivery_fee_idが空ではいけない' do
@@ -62,9 +62,8 @@ RSpec.describe Item, type: :model do
       it 'delivery_fee_idが1ではいけない' do
         @item.delivery_fee_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery fee must be other than 1')
       end
-
 
       it 'area_idが空ではいけない' do
         @item.area_id = ''
@@ -75,7 +74,7 @@ RSpec.describe Item, type: :model do
       it 'area_idが1ではいけない' do
         @item.area_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Area must be other than 1")
+        expect(@item.errors.full_messages).to include('Area must be other than 1')
       end
 
       it 'days_idが空ではいけない' do
@@ -87,7 +86,7 @@ RSpec.describe Item, type: :model do
       it 'days_idが1ではいけない' do
         @item.days_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days must be other than 1")
+        expect(@item.errors.full_messages).to include('Days must be other than 1')
       end
 
       it 'priceが空ではいけない' do
@@ -99,30 +98,30 @@ RSpec.describe Item, type: :model do
       it 'priceが300以上でなければいけない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 300円以上で入力して下さい")
+        expect(@item.errors.full_messages).to include('Price 300円以上で入力して下さい')
       end
 
       it 'priceが9999999以下でなければいけない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 9999999以下で入力して下さい")
+        expect(@item.errors.full_messages).to include('Price 9999999以下で入力して下さい')
       end
       it 'priceが全角ではいけない' do
         @item.price = 'ああ'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 300円以上で入力して下さい", "Price 9999999以下で入力して下さい")
+        expect(@item.errors.full_messages).to include('Price 300円以上で入力して下さい', 'Price 9999999以下で入力して下さい')
       end
 
       it 'priceが英数混合ではいけない' do
         @item.price = 'abc123'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 300円以上で入力して下さい", "Price 9999999以下で入力して下さい")
+        expect(@item.errors.full_messages).to include('Price 300円以上で入力して下さい', 'Price 9999999以下で入力して下さい')
       end
 
       it 'priceが半角英数ではいけない' do
         @item.price = 'aaaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 300円以上で入力して下さい", "Price 9999999以下で入力して下さい")
+        expect(@item.errors.full_messages).to include('Price 300円以上で入力して下さい', 'Price 9999999以下で入力して下さい')
       end
     end
   end
