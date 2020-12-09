@@ -17,6 +17,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
 
+      it 'imageが空ではいけない' do
+        @item.image =nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+
       it 'dataが空ではいけない' do
         @item.data = ''
         @item.valid?
