@@ -52,6 +52,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Days can't be blank")
       end
+
+        it 'priceが空ではいけない' do
+          @item.price = ''
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
     end
   end
 end
