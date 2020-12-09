@@ -25,6 +25,8 @@ class Item < ApplicationRecord
   validates :image,presence: true
 
   validates :price,presence: true, format: { with: /\A[0-9]+\z/, message: '半角数字で入力して下さい' }
+  validates :price, numericality:{greater_than:299, message: '300円以上で入力して下さい' }
+  validates :price, numericality:{less_than:10000000 }
 
   
 
