@@ -2,29 +2,29 @@ class Item < ApplicationRecord
   belongs_to :user
   # has_one    :buy_record
   has_one_attached :image
+  with_options presence: true do
+    validates :name
+    validates :data
+    validates :category_id
+    validates :status_id
+    validates :delivery_fee_id
+    validates :area_id
+    validates :days_id
+    validates :image
+    validates :price
+  end
 
-  validates :name, presence: true
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :delivery_fee_id
+    validates :area_id
+    validates :days_id
+  end
 
-  validates :data, presence: true
 
-  validates :category_id, presence: true
-  validates :category_id, numericality: { other_than: 1 }
 
-  validates :status_id, presence: true
-  validates :status_id, numericality: { other_than: 1 }
-
-  validates :delivery_fee_id, presence: true
-  validates :delivery_fee_id, numericality: { other_than: 1 }
-
-  validates :area_id, presence: true
-  validates :area_id, numericality: { other_than: 1 }
-
-  validates :days_id, presence: true
-  validates :days_id, numericality: { other_than: 1 }
-
-  validates :image, presence: true
-
-  validates :price, presence: true, format: { with: /\A[0-9]+\z/, message: '半角数字で入力して下さい' }
+  validates :price,  format: { with: /\A[0-9]+\z/, message: '半角数字で入力して下さい' }
   validates :price, numericality: { greater_than: 299, message: '300円以上で入力して下さい' }
   validates :price, numericality: { less_than: 10_000_000 }
 
