@@ -77,16 +77,16 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Area must be other than 1')
       end
 
-      it 'days_idが空ではいけない' do
-        @item.days_id = ''
+      it 'day_idが空ではいけない' do
+        @item.day_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days can't be blank")
+        expect(@item.errors.full_messages).to include("Day can't be blank")
       end
 
-      it 'days_idが1ではいけない' do
-        @item.days_id = '1'
+      it 'day_idが1ではいけない' do
+        @item.day_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Days must be other than 1')
+        expect(@item.errors.full_messages).to include('Day must be other than 1')
       end
 
       it 'priceが空ではいけない' do
