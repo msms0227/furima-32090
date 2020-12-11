@@ -9,7 +9,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :delivery_fee_id
     validates :area_id
-    validates :days_id
+    validates :day_id
     validates :image
     validates :price
   end
@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :delivery_fee_id
     validates :area_id
-    validates :days_id
+    validates :day_id
   end
 
   validates :price, format: { with: /\A[0-9]+\z/, message: '半角数字で入力して下さい' }
