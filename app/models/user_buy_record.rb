@@ -16,4 +16,9 @@ class UserBuyRecord
     validates :phone_number
     validates :buy_record
   end
+
+  def save
+    buy_record=BuyRecord.create(user_id: user_id, item_id: item_id)
+    Place.create(postal_code: postal_code, area_id: area_id, city: city, address: address, building_name: building_name, phone_number: phone_number, buy_record_id: buy_record.id)
+  end
 end
