@@ -1,6 +1,9 @@
 class BuyRecordsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :index]
+  before_action :set_item, only: [:index,:create]
+  before_action :move_to_index, only: [:new, :create, :index]
+
   def index
-    @item= Item.find(params[:item_id])
     @buy_record=UserBuyRecord.new
   end
 
@@ -8,7 +11,6 @@ class BuyRecordsController < ApplicationController
   end
 
   def create
-    @item= Item.find(params[:item_id])
     buy_record=UserBuyRecord.new(buy_record_params)  
     #binding.pry              
     if buy_record.save
@@ -23,6 +25,16 @@ class BuyRecordsController < ApplicationController
 
   def buy_record_params
     params.require(:user_buy_record).permit(:postal_code, :area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id,item_id:params[:item_id],token: params[:token])
+  end
+
+  def set_item
+    @item= Item.find(params[:item_id])
+  end
+
+  def move_to_index
+    unless current_user.id == @item.user_id
+      redirect_to root_path 
+    end
   end
 
   def pay_item
