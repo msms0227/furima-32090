@@ -25,7 +25,7 @@
 | status_id         | integer   | null: false        |
 | delivery_fee_id   | integer   | null: false        |
 | area_id           | integer   | null: false        |
-| day_id           | integer   | null: false        |
+| day_id            | integer   | null: false        |
 | price             | integer   | null: false        |
 | user              | references| foreign_key: true: |
 
@@ -50,12 +50,12 @@
 |Column             |Type       |Options             |
 |-------------------|-----------|--------------------|
 | postal_code       | string    | null: false        |
-| prefectures_id    | integer   | null: false        |
+| area_id           | integer   | null: false        |
 | city              | string    | null: false        |
 | address           | string    | null: false        |
 | building_name     | string    | null: false        |
 | phone_number      | string    | null: false        |
-| buy_record        | references| null: false        |
+| buy_record        | references| foreign_key: true: |
 
 
 ### Association
