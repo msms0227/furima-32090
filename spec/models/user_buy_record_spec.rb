@@ -58,8 +58,14 @@ RSpec.describe UserBuyRecord, type: :model do
         expect(@user_buy_record.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it 'phone_numberが半角数字のみではいけない' do
+      it 'phone_numberが半角数字のみでないといけない' do
         @user_buy_record.phone_number = 'あいうえお'
+        @user_buy_record.valid?
+        expect(@user_buy_record.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it 'phone_numberが英数混合ではいけない' do
+        @user_buy_record.phone_number = 'uunc74ndjd'
         @user_buy_record.valid?
         expect(@user_buy_record.errors.full_messages).to include('Phone number is invalid')
       end

@@ -1,13 +1,10 @@
 class BuyRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :index]
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_index, only: [:new, :create, :index]
+  before_action :move_to_index, only: [ :create, :index]
 
   def index
     @buy_record = UserBuyRecord.new
-  end
-
-  def new
   end
 
   def create
