@@ -1,5 +1,5 @@
 class BuyRecordsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :index]
+  before_action :authenticate_user!, only: [ :create, :index]
   before_action :set_item, only: [:index, :create]
   before_action :move_to_index, only: [ :create, :index]
 

@@ -35,7 +35,7 @@ RSpec.describe UserBuyRecord, type: :model do
       end
 
       it 'area_idが〜ではいけない' do
-        @user_buy_record.area_id = '1'
+        @user_buy_record.area_id = 1
         @user_buy_record.valid?
         expect(@user_buy_record.errors.full_messages).to include('Area must be other than 1')
       end

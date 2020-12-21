@@ -2,7 +2,6 @@ class UserBuyRecord
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :postal_code, :area_id, :city, :address, :building_name, :phone_number, :token
 
-  validates :token, presence: true
 
   with_options numericality: { other_than: 1 } do
     validates :area_id
@@ -18,6 +17,7 @@ class UserBuyRecord
     validates :city
     validates :address
     validates :phone_number
+    validates :token
   end
 
   def save
