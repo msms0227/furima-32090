@@ -11,8 +11,9 @@ class BuyRecordsController < ApplicationController
   end
 
   def create
-    buy_record = UserBuyRecord.new(buy_record_params)
-    if buy_record.save
+    @buy_record = UserBuyRecord.new(buy_record_params)
+    if @buy_record.valid?
+      @buy_record.save
       pay_item
       redirect_to root_path
     else
